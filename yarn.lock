@@ -1738,6 +1738,11 @@
     "moment" "^2.8.1"
     "swig" "1.4.1"
 
+"hexo-githubcalendar@^1.2.2":
+  "integrity" "sha1-gPcAvGABxJNrBTzBi6nKmjEVKR0="
+  "resolved" "https://registry.nlark.com/hexo-githubcalendar/download/hexo-githubcalendar-1.2.2.tgz"
+  "version" "1.2.2"
+
 "hexo-i18n@^0.2.1":
   "integrity" "sha1-hPFBQyvwnYtVjth4xygWS20c1t4="
   "resolved" "https://registry.npm.taobao.org/hexo-i18n/download/hexo-i18n-0.2.1.tgz"
