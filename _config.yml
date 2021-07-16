@@ -112,7 +112,8 @@ backup:
   theme: butterfly
   message: Back up my blog
   repository:
-    github: git@github.com:fabian4/blog.git
+    github: git@github.com:fabian4/fabian.github.io.git,backup
+    gitHub: git@github.com:fabian4/blog.git,master
 
 
 githubcalendar:
