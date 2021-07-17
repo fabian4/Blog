@@ -48,14 +48,7 @@ copy:
 #   icon: link || the description
 social: 
   fas fa-envelope: mailto:fabian4@163.com || Email
-  fab fa-qq: tencent://AddContact/?fromId=45&fromSubId=1&subcmd=all&uin=2829782656&website=www.oicqzone.com || QQ
-  fab fa-weixin: https://github.com/fabian4 || weixin
-  fab fa-weibo: https://github.com/fabian4 || weibo
-  fab fa-youtube: https://github.com/fabian4 || youtube
-  fab fa-twitter: https://github.com/fabian4 || twitter
-  fab fa-facebook-f: https://github.com/fabian4 || facebook
-  fab fa-instagram: https://github.com/fabian4 || instagram
-  fab fa-telegrame: https://github.com/fabian4 || telegrame
+  fab fa-qq: tencent://AddContact/?fromId=45&fromSubId=1&subcmd=all&uin=2829782656 || QQ
 
 # search (搜索)
 # --------------------------------------
