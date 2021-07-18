@@ -50,8 +50,12 @@ social:
   fas fa-envelope: mailto:fabian4@163.com || Email
   fab fa-qq: tencent://AddContact/?fromId=45&fromSubId=1&subcmd=all&uin=2829782656 || QQ
   fab fa-weixin: http://fabian.oss-cn-hangzhou.aliyuncs.com/img/bc7680cda661a69a399e9f11b2e36f2.jpg || weixin
+  fab fa-weibo: https://weibo.com/u/7390627985 || weibo
+  fab fa-youtube: https://youtube.com/channel/UCuGx9saCu3PqlXBO6PGDXKA || youtube
+  fab fa-twitter: https://twitter.com/fabian13416618 || twitter
+  fab fa-facebook-f: https://www.facebook.com/profile.php?id=100070103808403 || facebook
   fab fa-instagram: https://www.instagram.com/fabianbianbianbian || instagram
-  fab fa-telegrame: https://t.me/fabianbao || telegrame
+  fab fab fa-telegram-plane: https://t.me/fabianbao || telegrame
 
 # search (搜索)
 # --------------------------------------
