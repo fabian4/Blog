@@ -7,6 +7,7 @@ comments: false
 
 - [ ] [**从部落到帝国 - 后端技术栈的演进及开源实践**](https://coderxing.gitbooks.io/architecture-evolution/content/)
 - [ ] [**互联网公司常用框架源码赏析**](https://schunter.netlify.app/#/)
+- [ ] [**王者并发课**](https://juejin.cn/post/6967277362455150628)
 - [ ] [**凤凰架构**](https://icyfenix.cn/)
 - [ ] [**LeetCode solutions in any programming language**](https://lc.netlify.app/#/)
 - [ ]  [**algorithm-base**](https://github.com/chefyuan/algorithm-base)
