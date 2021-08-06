@@ -10,6 +10,7 @@ comments: false
 > - [ ] [**Java面试+Java学习指南**](https://github.com/AobingJava/JavaFamily)
 > - [ ] [**后端技术总结**](http://notfound9.github.io/interviewGuide/#/)
 > - [ ] [**Java知音**](https://www.javazhiyin.com/topics)
+> - [ ] [**陌溪的学习笔记**](https://github.com/moxi624/LearningNotes)
 > - [ ] [**后端架构师技术图谱**](https://github.com/xingshaocheng/architect-awesome)
 > - [ ] [**从部落到帝国 - 后端技术栈的演进及开源实践**](https://coderxing.gitbooks.io/architecture-evolution/content/)
 > - [ ] [**互联网公司常用框架源码赏析**](https://schunter.netlify.app/#/)

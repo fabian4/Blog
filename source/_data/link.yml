@@ -60,11 +60,3 @@ class:
       link: https://imlql.cn/ 
       avatar: https://cdn.jsdelivr.net/gh/youthlql/lqlp@v1.0.0/blog/avatar.jpg
       descr: 主要是Java技术栈的博客，比较偏原理，源码类型的博主 
-    - name: 陌溪
-      link: http://moxi159753.gitee.io/learningnotes/#/
-      avatar: http://moxi159753.gitee.io/learningnotes/doc/icon/favicon2.ico
-      descr: Java学习笔记，面试突击宝典 
-    - name: 小浩算法
-      link: https://www.geekxh.com/
-      avatar: https://www.geekxh.com/logo.png
-      descr: 小浩算法
