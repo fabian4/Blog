@@ -28,6 +28,7 @@ comments: false
 > - [ ] [**LeetCode solutions in any programming language**](https://lc.netlify.app/#/)
 > - [ ] [**LeetCode 刷题攻略**](https://github.com/youngyangyang04/leetcode-master)
 > - [ ] [**algorithm-base**](https://github.com/chefyuan/algorithm-base)
+> - [ ] [**小浩算法**](https://www.geekxh.com/)
 
 # 大数据相关
 
@@ -36,6 +37,9 @@ comments: false
 # 其他
 
 > - [ ] [**GitHub 漫游指南**](https://github.phodal.com/)
+> - [ ] [**阮一峰：互联网上的免费书籍**](https://github.com/ruanyf/free-books)
+> - [ ] [**阮一峰：科技爱好者周刊**](https://github.com/ruanyf/weekly)
+> - [ ] [**ML-For-Beginners**](https://github.com/microsoft/ML-For-Beginners)
 
 
 
