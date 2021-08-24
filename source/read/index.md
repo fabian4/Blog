@@ -11,11 +11,14 @@ comments: false
 > - [ ] [**后端技术总结**](http://notfound9.github.io/interviewGuide/#/)
 > - [ ] [**Java知音**](https://www.javazhiyin.com/topics)
 > - [ ] [**陌溪的学习笔记**](https://github.com/moxi624/LearningNotes)
-> - [ ] [**后端架构师技术图谱**](https://github.com/xingshaocheng/architect-awesome)
-> - [ ] [**从部落到帝国 - 后端技术栈的演进及开源实践**](https://coderxing.gitbooks.io/architecture-evolution/content/)
-> - [ ] [**互联网公司常用框架源码赏析**](https://schunter.netlify.app/#/)
+> - [ ] [**MrBird's Blog**](https://mrbird.cc/)
 > - [ ] [**王者并发课**](https://juejin.cn/post/6967277362455150628)
 > - [ ] [**凤凰架构**](https://icyfenix.cn/)
+> - [ ] [**后端架构师技术图谱**](https://github.com/xingshaocheng/architect-awesome)
+> - [ ] [**Java 虚拟机底层原理知识总结**](https://doocs.github.io/jvm/#/)
+> - [ ] [**互联网 Java 工程师进阶知识完全扫盲**](https://doocs.github.io/advanced-java/#/)
+> - [ ] [**互联网公司常用框架源码赏析**](https://schunter.netlify.app/#/)
+> - [ ] [**从部落到帝国 - 后端技术栈的演进及开源实践**](https://coderxing.gitbooks.io/architecture-evolution/content/)
 >
 
 
