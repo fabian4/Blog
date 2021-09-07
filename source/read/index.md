@@ -24,6 +24,10 @@ comments: false
 > - [ ] [**从部落到帝国 - 后端技术栈的演进及开源实践**](https://coderxing.gitbooks.io/architecture-evolution/content/)
 >
 
+# Golang 相关
+
+> - [ ] [**golang资料补给包**](https://github.com/0voice/Introduction-to-Golang)
+
 
 # CS 相关
 >- [ ] [**Record CS knowledge with XMind**](https://github.com/SmartKeyerror/ZeroMind)
