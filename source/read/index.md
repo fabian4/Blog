@@ -14,6 +14,7 @@ comments: false
 > - [ ] [**MrBird's Blog**](https://mrbird.cc/)
 > - [ ] [**王者并发课**](https://juejin.cn/post/6967277362455150628)
 > - [ ] [**凤凰架构**](https://icyfenix.cn/)
+> - [ ] [**为什么这么设计系列文章**](https://draveness.me/whys-the-design/)
 > - [ ] [**Spring相关组件阅读笔记**](https://github.com/seaswalker/spring-analysis)
 > - [ ] [**Java流行框架源码分析**](https://github.com/coderbruis/JavaSourceCodeLearning)
 > - [ ] [**Spring源码解析系列**](https://github.com/shiyujun/spring-framework)
