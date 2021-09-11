@@ -9,6 +9,7 @@ comments: false
 
 > - [ ] [**Java面试+Java学习指南**](https://github.com/AobingJava/JavaFamily)
 > - [ ] [**后端技术总结**](http://notfound9.github.io/interviewGuide/#/)
+> - [ ] [**Java必备的知识点**](https://github.com/bin392328206/six-finger)
 > - [ ] [**Java知音**](https://www.javazhiyin.com/topics)
 > - [ ] [**陌溪的学习笔记**](https://github.com/moxi624/LearningNotes)
 > - [ ] [**MrBird's Blog**](https://mrbird.cc/)
