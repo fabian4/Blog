@@ -7,13 +7,13 @@
 #   name: link || icon
 
 menu:
-  Home: / || fa fa-home
-  Archives: /archives/ || fa fa-archive
-  Tags: /tags/ || fa fa-tags
-  Categories: /categories/ || fa fa-folder-open
-  link: /link/ || fa fa-link
-  reading: /read/ || fa fa-book
-  about: /about/ || fas fa-heart
+  主页: / || fa fa-home
+  归档: /archives/ || fa fa-archive
+  标签: /tags/ || fa fa-tags
+  分类: /categories/ || fa fa-folder-open
+  友链: /link/ || fa fa-link
+  阅读: /read/ || fa fa-book
+  关于: /about/ || fas fa-heart
   # Home: / || fas fa-home
   # Archives: /archives/ || fas fa-archive
   # Tags: /tags/ || fas fa-tags
