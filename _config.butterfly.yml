@@ -12,6 +12,7 @@ menu:
   标签: /tags/ || fa fa-tags
   分类: /categories/ || fa fa-folder-open
   友链: /link/ || fa fa-link
+  相册: /gallery/ || fas fa-video
   阅读: /read/ || fa fa-book
   关于: /about/ || fas fa-heart
   # Home: / || fas fa-home
