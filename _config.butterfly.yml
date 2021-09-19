@@ -7,12 +7,13 @@
 #   name: link || icon
 
 menu:
-  主页: / || fa fa-home
-  文章: /archives/ || fa fa-archive
-  标签: /tags/ || fa fa-tags
-  分类: /categories/ || fa fa-folder-open
-  链接: /link/ || fa fa-link
-  阅读: /read/ || fa fa-book
+  Home: / || fa fa-home
+  Archives: /archives/ || fa fa-archive
+  Tags: /tags/ || fa fa-tags
+  Categories: /categories/ || fa fa-folder-open
+  link: /link/ || fa fa-link
+  reading: /read/ || fa fa-book
+  about: /about/ || fas fa-heart
   # Home: / || fas fa-home
   # Archives: /archives/ || fas fa-archive
   # Tags: /tags/ || fas fa-tags
@@ -48,16 +49,11 @@ copy:
 # formal:
 #   icon: link || the description
 social: 
-  fas fa-envelope: mailto:fabian4@163.com || Email
+  fas fa-envelope: mailto:baoyaolong@gmail.com || Email
   fab fa-qq: tencent://AddContact/?fromId=45&fromSubId=1&subcmd=all&uin=2829782656 || QQ
   fab fa-weixin: http://fabian.oss-cn-hangzhou.aliyuncs.com/img/bc7680cda661a69a399e9f11b2e36f2.jpg || weixin
-  fab fa-weibo: https://weibo.com/u/7390627985 || weibo
-  fab fa-youtube: https://youtube.com/channel/UCuGx9saCu3PqlXBO6PGDXKA || youtube
   fab fa-twitter: https://twitter.com/fabian13416618 || twitter
-  fab fa-facebook-f: https://www.facebook.com/profile.php?id=100070103808403 || facebook
-  fab fa-instagram: https://www.instagram.com/fabianbianbianbian || instagram
   fab fa-telegram-plane: https://t.me/fabianbao || telegrame
-  fab fa-reddit-alien: https://www.reddit.com/user/Negative_Season_9946 || reddit
 
 # search (搜索)
 # --------------------------------------
@@ -660,7 +656,7 @@ aside:
       link: https://github.com/fabian4
   card_announcement:
     enable: true
-    content: This is my Blog
+    content: The best is yet to come
   card_recent_post:
     enable: true
     limit: 5 # if set 0 will show all
