@@ -1718,6 +1718,14 @@
   dependencies:
     "function-bind" "^1.1.1"
 
+"hexo-abbrlink@^2.2.1":
+  "integrity" "sha1-A6O79zgW7RknnpdFLOYXxsr5i1o="
+  "resolved" "https://registry.nlark.com/hexo-abbrlink/download/hexo-abbrlink-2.2.1.tgz"
+  "version" "2.2.1"
+  dependencies:
+    "hexo-front-matter" "^1.0.0"
+    "hexo-fs" "^3.1.0"
+
 "hexo-browsersync@^0.3.0":
   "integrity" "sha1-PUNDU3SSFEKJHtGAuhflGU7Q05Q="
   "resolved" "https://registry.npm.taobao.org/hexo-browsersync/download/hexo-browsersync-0.3.0.tgz"
@@ -1786,6 +1794,13 @@
   "version" "0.2.3"
   dependencies:
     "js-yaml" "^3.6.1"
+
+"hexo-front-matter@^1.0.0":
+  "integrity" "sha1-C0ixwe0UPoyyWzsiOpA3OF2RBlU="
+  "resolved" "https://registry.npm.taobao.org/hexo-front-matter/download/hexo-front-matter-1.0.0.tgz"
+  "version" "1.0.0"
+  dependencies:
+    "js-yaml" "^3.13.1"
 
 "hexo-front-matter@^2.0.0":
   "integrity" "sha1-A/Oanu2xbFRI27O+x9/yxOIkAGw="
