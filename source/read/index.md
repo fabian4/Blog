@@ -20,6 +20,7 @@ comments: false
 > - [ ] [**Spring相关组件阅读笔记**](https://github.com/seaswalker/spring-analysis)
 > - [ ] [**Java流行框架源码分析**](https://github.com/coderbruis/JavaSourceCodeLearning)
 > - [ ] [**Spring源码解析系列**](https://github.com/shiyujun/spring-framework)
+> - [ ] [**史上最简单的Spring Cloud教程源码**](https://github.com/forezp/SpringCloudLearning)
 > - [ ] [**后端架构师技术图谱**](https://github.com/xingshaocheng/architect-awesome)
 > - [ ] [**Java 虚拟机底层原理知识总结**](https://doocs.github.io/jvm/#/)
 > - [ ] [**互联网 Java 工程师进阶知识完全扫盲**](https://doocs.github.io/advanced-java/#/)
