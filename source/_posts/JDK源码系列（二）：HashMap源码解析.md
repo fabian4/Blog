@@ -180,6 +180,83 @@ static final int hash(Object key) {
 
 ## 三、构造方法和初始化
 
+```java
+/**
+ * Constructs an empty <tt>HashMap</tt> with the specified initial
+ * capacity and load factor.
+ *
+ * @param  initialCapacity the initial capacity
+ * @param  loadFactor      the load factor
+ * @throws IllegalArgumentException if the initial capacity is negative
+ *         or the load factor is nonpositive
+ */
+public HashMap(int initialCapacity, float loadFactor) {
+    if (initialCapacity < 0)
+        throw new IllegalArgumentException("Illegal initial capacity: " +
+                                           initialCapacity);
+    if (initialCapacity > MAXIMUM_CAPACITY)
+        initialCapacity = MAXIMUM_CAPACITY;
+    if (loadFactor <= 0 || Float.isNaN(loadFactor))
+        throw new IllegalArgumentException("Illegal load factor: " +
+                                           loadFactor);
+    this.loadFactor = loadFactor;
+    this.threshold = tableSizeFor(initialCapacity);
+}
+```
+
+这个是最后被调用的构造方法，本质上就是先给 hashmap 初始两个值：**initialCapacity** 和 **loadFactor**：即初始容量和负载因子
+
+### 1. 初始容量 initialCapacity
+
+```java
+/**
+ * 获取 比 cap 大的最小的二进制数
+ * Returns a power of two size for the given target capacity.
+ */
+static final int tableSizeFor(int cap) {
+    // 避免 输入为2的幂时 返回了 cap * 2
+    int n = cap - 1;
+    n |= n >>> 1;
+    n |= n >>> 2;
+    n |= n >>> 4;
+    n |= n >>> 8;
+    n |= n >>> 16;
+    return (n < 0) ? 1 : (n >= MAXIMUM_CAPACITY) ? MAXIMUM_CAPACITY : n + 1;
+}
+```
+
+这里我们以输入 9 为例
+
+1. n = cap - 1;
+
+   **这里如果直接没有 -1 操作，如果输入的为2的幂，补1之后再+1，就不会返回原值而是 cap*2**
+
+   n =  00000000 00000000 00000000 00001000
+
+2. n |= n >>> 1
+
+   00000000 00000000 00000000 00001000  n
+
+   00000000 00000000 00000000 00000100  n >>> 1
+
+   ======================================
+
+   00000000 00000000 00000000 00001100 => n  
+
+3. n |= n >>> 2
+
+   00000000 00000000 00000000 00001101  n
+
+   00000000 00000000 00000000 00000011  n >>> 2
+
+   ======================================
+
+   00000000 00000000 00000000 00001111 => n  
+
+4. 后续操作使得后续全为一
+
+5. 最后检查 大于零且小于最大值，将结果加一返回：16
+
 ## 四、添加元素和查找元素
 
 ## 五、扩容和rehash
