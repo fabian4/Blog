@@ -37,7 +37,7 @@ abbrlink: 14375
 public native int hashCode();
 ~~~
 
-方法本身是 native 方法，调用了底层的的类库，但是根据注释：
+方法本身是 native 方法，调用了底层的的类库，根据注释：
 
 hashCode 遵守着如下的约定：
 
@@ -59,15 +59,27 @@ hashCode 遵守着如下的约定：
 
 ### hashmap 采用的哈希方法
 
-贴一下其中 hash 方法的源码
-
 ~~~java
-
+static final int hash(Object key) {
+    int h;
+    // 这里当 key 不为 null 的时候，将key的哈希值 和 右移16位的哈希值 做异或运算
+    return (key == null) ? 0 : (h = key.hashCode()) ^ (h >>> 16);
+}
 ~~~
 
+![image-20210924132832294](https://fabian.oss-cn-hangzhou.aliyuncs.com/img/image-20210924132832294.png)
 
+将h无符号右移16为相当于将高区16位移动到了低区的16位，再与原hashcode做异或运算，可以**将高低位二进制特征混合起来**。
 
+从上文可知高区的16位与原hashcode相比没有发生变化，低区的16位发生了变化。
 
+我们都知道重新计算出的新哈希值在后面将会参与hashmap中数组槽位的计算，计算公式：(n - 1) & hash，假如这时数组槽位有16个，则槽位计算如下：
+
+![image-20210924133141544](https://fabian.oss-cn-hangzhou.aliyuncs.com/img/image-20210924133141544.png)
+
+**高区的16位很有可能会被数组槽位数的二进制码锁屏蔽，如果我们不做刚才移位异或运算，那么在计算槽位时将丢失高区特征**
+
+也许你可能会说，即使丢失了高区特征不同hashcode也可以计算出不同的槽位来，但是细想当两个哈希码很接近时，那么这高区的一点点差异就**可能导致一次哈希碰撞**，所以这也是将性能做到极致的一种体现
 
 ## 二、存储方式和数据结构
 
@@ -75,11 +87,100 @@ hashCode 遵守着如下的约定：
 >
 > 答：数组+链表+红黑树
 
-首先我们知道 hashmap 是一个 K-V 结构的存储关系，qi
+![image-20210924142231035](https://fabian.oss-cn-hangzhou.aliyuncs.com/img/image-20210924142231035.png)
+
+从上面的图中我们可以看出hashmap的存储结构，默认是数组+链表的结构。
+
+当**链表的长度大于 8 (默认)** 的时候，链表会转换为红黑树。
+
+- node 的数组
+
+  ~~~java
+  /**
+  * The table, initialized on first use, and resized as
+  * necessary. When allocated, length is always a power of two.
+  * (We also tolerate length zero in some operations to allow
+  * bootstrapping mechanics that are currently not needed.)
+  */
+  transient Node<K,V>[] table;
+  ~~~
+
+- node 结点
+
+  ~~~java
+  /**
+  * Basic hash bin node, used for most entries.  (See below for
+  * TreeNode subclass, and in LinkedHashMap for its Entry subclass.)
+  */
+  static class Node<K,V> implements Map.Entry<K,V> {
+      final int hash;
+      final K key;
+      V value;
+      Node<K,V> next;
+  
+      Node(int hash, K key, V value, Node<K,V> next) {
+          this.hash = hash;
+          this.key = key;
+          this.value = value;
+          this.next = next;
+      }
+  
+      public final K getKey()        { return key; }
+      public final V getValue()      { return value; }
+      public final String toString() { return key + "=" + value; }
+  
+      /**
+      * node结点的哈希值：将 key 的哈希值和 value 的哈希值进行异或运算
+      */
+      public final int hashCode() {
+          return Objects.hashCode(key) ^ Objects.hashCode(value);
+      }
+  
+      public final V setValue(V newValue) {
+          V oldValue = value;
+          value = newValue;
+          return oldValue;
+      }
+  
+      public final boolean equals(Object o) {
+          if (o == this)
+              return true;
+          if (o instanceof Map.Entry) {
+              Map.Entry<?,?> e = (Map.Entry<?,?>)o;
+              if (Objects.equals(key, e.getKey()) &&
+                  Objects.equals(value, e.getValue()))
+                  return true;
+          }
+          return false;
+      }
+  }
+  ~~~
+
+- treenode 结点
+
+  ~~~java
+  /**
+  * Entry for Tree bins. Extends LinkedHashMap.Entry (which in turn
+  * extends Node) so can be used as extension of either regular or
+  * linked node.
+  */
+  static final class TreeNode<K,V> extends LinkedHashMap.Entry<K,V> {
+      TreeNode<K,V> parent;  // red-black tree links
+      TreeNode<K,V> left;
+      TreeNode<K,V> right;
+      TreeNode<K,V> prev;    // needed to unlink next upon deletion
+      boolean red;
+      TreeNode(int hash, K key, V val, Node<K,V> next) {
+          super(hash, key, val, next);
+      }
+  }
+  ~~~
+
+  
 
 ## 三、构造方法和初始化
 
-## 四、扩容和rehash
+## 四、添加元素和查找元素
 
-## 五、添加元素和查找元素
+## 五、扩容和rehash
 
