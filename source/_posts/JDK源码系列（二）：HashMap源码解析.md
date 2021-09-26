@@ -257,6 +257,57 @@ static final int tableSizeFor(int cap) {
 
 5. 最后检查 大于零且小于最大值，将结果加一返回：16
 
+### 2. 负载因子 loadFactor
+
+```java
+/**
+ * The load factor used when none specified in constructor.
+ * 这里我们可以看到 jdk 默认的负载因子为 0.75。当初始化未指定时就采用此值。
+ */
+static final float DEFAULT_LOAD_FACTOR = 0.75f;
+```
+
+这个值和我们hashmap的扩容有关：**比如说当前的容器容量是16，负载因子是0.75,16\*0.75=12，也就是说，当容量达到了12的时候就会进行扩容操作**
+
+此处我们可以从时间和空间的角度来考虑：
+
+- **当负载因子的值为 1**
+  - 此时只有当 node 数组被填满时才会进行扩容
+  - 既然哈希碰撞是不可避免的，那么此时底层的红黑树结构就会变得异常复杂，明显会降低查询效率
+  - 时间换空间
+- **当负载因子的值为 0.5**
+  - 此时当 node 数组被填充超过一半就会进行扩容
+  - 那么虽然可以降低底层红黑树的结构提高查找效率，也无疑牺牲了一半的存储空间
+  - 空间换时间
+
+所以 0.75 的选择可以说是空间和时间的权衡。但最后的 0.75 也并不是简单的 0.5 和 1 的折中。
+
+根据源码的注释，里面涉及到一些统计学方面的泊松分布的计算，这里就不展开细说了。
+
+```java
+/**
+* Ideally, under random hashCodes, the frequency of
+* nodes in bins follows a Poisson distribution
+* (http://en.wikipedia.org/wiki/Poisson_distribution) with a
+* parameter of about 0.5 on average for the default resizing
+* threshold of 0.75, although with a large variance because of
+* resizing granularity. Ignoring variance, the expected
+* occurrences of list size k are (exp(-0.5) * pow(0.5, k) /
+* factorial(k)). The first values are:
+*
+* 0:    0.60653066
+* 1:    0.30326533
+* 2:    0.07581633
+* 3:    0.01263606
+* 4:    0.00157952
+* 5:    0.00015795
+* 6:    0.00001316
+* 7:    0.00000094
+* 8:    0.00000006
+* more: less than 1 in ten million
+*/
+```
+
 ## 四、添加元素和查找元素
 
 ## 五、扩容和rehash
