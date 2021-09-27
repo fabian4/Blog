@@ -89,7 +89,7 @@ static final int hash(Object key) {
 
 - 那么这里主要考虑到的是：**位运算相比取模运算效率更高**
 
-关于为什么位运算能代替取模运算可以参考这个👉[**由HashMap哈希算法引出的求余%和与运算&转换问题**](https://www.cnblogs.com/ysocean/p/9054804.html)
+关于为什么位运算能代替取模运算可以参考这个 👉[**由HashMap哈希算法引出的求余%和与运算&转换问题**](https://www.cnblogs.com/ysocean/p/9054804.html)
 
 > **当 lenth = 2n 时，X % length = X & (length - 1)**
 >
@@ -351,6 +351,94 @@ static final float DEFAULT_LOAD_FACTOR = 0.75f;
  */
 public V put(K key, V value) {
     return putVal(hash(key), key, value, false, true);
+}
+```
+
+**这里贴一张流程图并且附上加了注释的源码**
+
+![image-20210927232504843](https://fabian.oss-cn-hangzhou.aliyuncs.com/img/image-20210927232504843.png)
+
+```java
+/**
+ * Implements Map.put and related methods.
+ *
+ * @param hash 	密钥的散列
+ * @param key 	键值
+ * @param value 	要放置的值
+ * @param onlyIfAbsent 	如果为真，则不更改现有值
+ * @param evict 	如果为 false，则表处于创建模式。
+ * @return 	以前的值，如果没有，则为 null
+ */
+final V putVal(int hash, K key, V value, boolean onlyIfAbsent,
+               boolean evict) {
+
+    Node<K,V>[] tab;
+    Node<K,V> p;
+    int n, i;
+
+    // table数组为空或者长度为零则 调用 resize() 来初始化数组
+    if ((tab = table) == null || (n = tab.length) == 0)
+        n = (tab = resize()).length;
+
+    // 计算数组下标，如果结点为空则新建结点放入
+    if ((p = tab[i = (n - 1) & hash]) == null)
+        tab[i] = newNode(hash, key, value, null);
+    else {
+
+        Node<K,V> e;
+        K k;
+
+        // 如果和头节点哈希值相等，则直接命中头节点
+        if (p.hash == hash &&
+            ((k = p.key) == key || (key != null && key.equals(k))))
+            e = p;
+
+        // 如果是树节点进行红黑树的操作
+        else if (p instanceof TreeNode)
+            e = ((TreeNode<K,V>)p).putTreeVal(this, tab, hash, key, value);
+
+        // 剩下的就是链表节点操作
+        else {
+            for (int binCount = 0; ; ++binCount) {
+                
+                // 走到尾结点则新建节点追加在后面
+                if ((e = p.next) == null) {
+                    p.next = newNode(hash, key, value, null);
+                    
+                    // 如果链表长度超过阈值则转化为红黑树
+                    if (binCount >= TREEIFY_THRESHOLD - 1) // -1 for 1st
+                        treeifyBin(tab, hash);
+                    break;
+                }
+                
+                // 当未走到尾结点时，根据哈希值是否相等来判断是否命中
+                if (e.hash == hash &&
+                    ((k = e.key) == key || (key != null && key.equals(k))))
+                    break;
+                p = e;
+            }
+        }
+        if (e != null) { // existing mapping for key
+            V oldValue = e.value;
+            // 根据标识位判断是否替换
+            if (!onlyIfAbsent || oldValue == null)
+                e.value = value;
+            
+            // 提供给 LinkedHashMap 的回调
+            afterNodeAccess(e);
+            return oldValue;
+        }
+    }
+    
+    // 更新修改次数来保证迭代器的快速失败机制
+    ++modCount;
+    // 超过阈值就扩容
+    if (++size > threshold)
+        resize();
+
+    // 提供给 LinkedHashMap 的回调
+    afterNodeInsertion(evict);
+    return null;
 }
 ```
 
