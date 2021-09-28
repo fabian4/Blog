@@ -442,5 +442,63 @@ final V putVal(int hash, K key, V value, boolean onlyIfAbsent,
 }
 ```
 
+### 2. get 方法 和 containsKey 方法
+
+```java
+public V get(Object key) {
+    Node<K,V> e;
+    return (e = getNode(hash(key), key)) == null ? null : e.value;
+}
+```
+
+```java
+public boolean containsKey(Object key) {
+    return getNode(hash(key), key) != null;
+}
+```
+
+> 这里我们可以看到底层都是调用了 `getNode()`这个方法通过哈希值和键值去搜索结点
+>
+> `containsKey`：如果找到结点则返回 true，否则返回 false
+>
+> `get`：如果找到结点返回结点的 value 值，否则返回 null
+>
+> - 不过要注意的是，这里如果返回了 null 可能有**两种原因**：
+>   1. **key 不存在**
+>   2. **key 存在，但是存储的结果为 null**
+
+```java
+final Node<K,V> getNode(int hash, Object key) {
+    
+    Node<K,V>[] tab; 
+    Node<K,V> first, e; 
+    int n; 
+    K k;
+    
+    if ((tab = table) != null && (n = tab.length) > 0 &&
+        (first = tab[(n - 1) & hash]) != null) {
+        
+        // 先对头节点做判断
+        if (first.hash == hash && // always check first node
+            ((k = first.key) == key || (key != null && key.equals(k))))
+            return first;
+        if ((e = first.next) != null) {
+            
+            // 如果是红黑树结点
+            if (first instanceof TreeNode)
+                return ((TreeNode<K,V>)first).getTreeNode(hash, key);
+            
+            // 最后遍历链表
+            do {
+                if (e.hash == hash &&
+                    ((k = e.key) == key || (key != null && key.equals(k))))
+                    return e;
+            } while ((e = e.next) != null);
+        }
+    }
+    return null;
+}
+```
+
 ## 五、扩容和rehash
 
