@@ -502,3 +502,112 @@ final Node<K,V> getNode(int hash, Object key) {
 
 ## 五、扩容和rehash
 
+这里我们先上`resize()`函数的源码
+
+```java
+final Node<K,V>[] resize() {
+    Node<K,V>[] oldTab = table;
+    int oldCap = (oldTab == null) ? 0 : oldTab.length;
+    int oldThr = threshold;
+    int newCap, newThr = 0;
+    // 当原结构有数据的时候
+    if (oldCap > 0) {
+        // 如果之前的容量大于最大容量，即将阈值调整到最大并不再扩容
+        if (oldCap >= MAXIMUM_CAPACITY) {
+            threshold = Integer.MAX_VALUE;
+            return oldTab;
+        }
+
+        // 当新容量小于最大容量 旧容量大于默认初始值时，对阈值 double
+        else if ((newCap = oldCap << 1) < MAXIMUM_CAPACITY &&
+                 oldCap >= DEFAULT_INITIAL_CAPACITY)
+            newThr = oldThr << 1; // double threshold
+    }
+
+    // 如果一开始给定了初始容量，就取初始化时的值
+    else if (oldThr > 0) // initial capacity was placed in threshold
+        newCap = oldThr;
+
+    // 最后采取默认值
+    else {               // zero initial threshold signifies using defaults
+        newCap = DEFAULT_INITIAL_CAPACITY;
+        newThr = (int)(DEFAULT_LOAD_FACTOR * DEFAULT_INITIAL_CAPACITY);
+    }
+
+    // 通过最大容量和负载因子计算阈值
+    if (newThr == 0) {
+        float ft = (float)newCap * loadFactor;
+        newThr = (newCap < MAXIMUM_CAPACITY && ft < (float)MAXIMUM_CAPACITY ?
+                  (int)ft : Integer.MAX_VALUE);
+    }
+    threshold = newThr;
+
+    // 根据 newCap 创建新的数组
+    @SuppressWarnings({"rawtypes","unchecked"})
+    Node<K,V>[] newTab = (Node<K,V>[])new Node[newCap];
+    table = newTab;
+
+    // 如果不为空，搬运之前map的存储内容，遍历每一个数组
+    if (oldTab != null) {
+        for (int j = 0; j < oldCap; ++j) {
+            Node<K,V> e;
+            if ((e = oldTab[j]) != null) {
+                oldTab[j] = null;
+                if (e.next == null)
+                    newTab[e.hash & (newCap - 1)] = e;
+                else if (e instanceof TreeNode)
+                    ((TreeNode<K,V>)e).split(this, newTab, j, oldCap);
+                else { // preserve order
+                    // 将链表分成两个组，根据哈希值一部分留在原来数组位置，一部分向前 oldCap
+                    Node<K,V> loHead = null, loTail = null;
+                    Node<K,V> hiHead = null, hiTail = null;
+                    Node<K,V> next;
+                    do {
+                        next = e.next;
+                        if ((e.hash & oldCap) == 0) {
+                            if (loTail == null)
+                                loHead = e;
+                            else
+                                loTail.next = e;
+                            loTail = e;
+                        }
+                        else {
+                            if (hiTail == null)
+                                hiHead = e;
+                            else
+                                hiTail.next = e;
+                            hiTail = e;
+                        }
+                    } while ((e = next) != null);
+                    if (loTail != null) {
+                        loTail.next = null;
+                        newTab[j] = loHead;
+                    }
+                    if (hiTail != null) {
+                        hiTail.next = null;
+                        newTab[j + oldCap] = hiHead;
+                    }
+                }
+            }
+        }
+    }
+    return newTab;
+}
+```
+
+这个函数一般提供两个功能：
+
+- 在构造函数之后，第一次`put()`发现数组为空则会调用，实现懒加载
+- 当存储的数据超过阈值时调用，来实现扩容
+
+**经过rehash之后，元素的位置要么是在原位置，要么是在原位置再移动2次幂的位置**
+
+![image-20210929231418128](https://fabian.oss-cn-hangzhou.aliyuncs.com/img/image-20210929231418128.png)
+
+![image-20210929231439803](https://fabian.oss-cn-hangzhou.aliyuncs.com/img/image-20210929231439803.png)
+
+![image-20210929231504675](https://fabian.oss-cn-hangzhou.aliyuncs.com/img/image-20210929231504675.png)
+
+> - 扩容是一个特别耗性能的操作，所以当程序员在使用HashMap的时候，估算map的大小，初始化的时候给一个大致的数值，避免map进行频繁的扩容。
+>
+> - 负载因子是可以修改的，也可以大于1，但是建议不要轻易修改，除非情况非常特殊。
