@@ -1,6 +1,6 @@
 ---
 title: JDK源码系列（二）：HashMap源码解析
-date: 2021/3/37
+date: 2021/3/27
 description: JDK源码系列（二）：HashMap源码解析
 top_img: 'https://fabian.oss-cn-hangzhou.aliyuncs.com/img/20210921115132.png'
 cover: 'https://fabian.oss-cn-hangzhou.aliyuncs.com/img/20210921115132.png'
@@ -10,7 +10,7 @@ tags:
   - java
   - 源码
   - jdk
-  - hashmap
+  - HashMap
 abbrlink: 14375
 ---
 
