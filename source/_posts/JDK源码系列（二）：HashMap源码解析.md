@@ -612,3 +612,84 @@ final Node<K,V>[] resize() {
 > - 扩容是一个特别耗性能的操作，所以当程序员在使用HashMap的时候，估算map的大小，初始化的时候给一个大致的数值，避免map进行频繁的扩容。
 >
 > - 负载因子是可以修改的，也可以大于1，但是建议不要轻易修改，除非情况非常特殊。
+
+## 六、头插法和尾插法
+
+> JDK8以前是头插法，JDK8后是尾插法
+
+头插法和尾插法，顾名思义就是插入链表的时候插入在链表头部还是尾部。
+
+**由于`HashMap`在扩容时采用头插法会造成链表死循环，故在JDK8之后调整为尾插法**。
+
+这里贴一个别人的分析
+
+- 前提条件：
+  1. hash算法为简单的用key mod链表的大小。
+  2. 最开始hash表size=2，key=3,7,5，则都在table[1]中。
+  3. 然后进行resize，使size变成4。
+  4. 未resize前的数据结构如下：
+
+![Image](https://mmbiz.qpic.cn/mmbiz_png/JdLkEI9sZfecWQvk4vhdQnUBzictjvKTV8KojY8VrMVmMVK0mT4Ric2icyc3icUzVuQCuLGpzOgZxOeHd8MgfgNuXQ/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
+
+如果在单线程环境下，最后的结果如下：
+
+![Image](https://mmbiz.qpic.cn/mmbiz_png/JdLkEI9sZfecWQvk4vhdQnUBzictjvKTVCB9USBX1WYQPWzj7iciaTjlyHZpq2MlWRasFGPLvXEM1zf0tiaictibYSsg/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
+
+这里的转移过程，不再进行详述，只要理解transfer函数在做什么，其转移过程以及如何对链表进行反转应该不难。
+
+然后在多线程环境下，假设有两个线程A和B都在进行put操作。线程A在执行到transfer函数中第11行代码处挂起，因为该函数在这里分析的地位非常重要，因此再次贴出来。
+
+![Image](https://mmbiz.qpic.cn/mmbiz_png/JdLkEI9sZfecWQvk4vhdQnUBzictjvKTVRtdI81vOOgiayBNwiaru5saibodJiaUAxBsic9Clib8qu2SZWQd6MlokUF9g/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
+
+此时线程A中运行结果如下：
+
+![Image](https://mmbiz.qpic.cn/mmbiz_png/JdLkEI9sZfecWQvk4vhdQnUBzictjvKTVCrq6iaOLPVE0kE1zgCQYmWKTUPBGAm1icoUUR8ADvhUwTLoQ0jZzBr1g/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
+
+线程A挂起后，此时线程B正常执行，并完成resize操作，结果如下：
+
+![Image](https://mmbiz.qpic.cn/mmbiz_png/JdLkEI9sZfecWQvk4vhdQnUBzictjvKTVGWwiboVcEoovrdg7qUibUcwrLTuww3rbptiaFoZI11NaTj0tDAxybhwag/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
+
+**这里需要特别注意的点：由于线程B已经执行完毕，根据Java内存模型，现在newTable和table中的Entry都是主存中最新值：7.next=3，3.next=null。**
+
+此时切换到线程A上，在线程A挂起时内存中值如下：e=3，next=7，newTable[3]=null，代码执行过程如下：
+
+```
+newTable[3]=e ----> newTable[3]=3
+e=next ----> e=7
+```
+
+此时结果如下：
+
+![Image](https://mmbiz.qpic.cn/mmbiz_png/JdLkEI9sZfecWQvk4vhdQnUBzictjvKTVSPJ6RwE1NHxILdUiaIFib3NHncYPI6hfE0NvKWKu0UANfsFsWPicWKOvA/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
+
+继续循环：
+
+```
+e=7
+next=e.next ----> next=3【从主存中取值】
+e.next=newTable[3] ----> e.next=3【从主存中取值】
+newTable[3]=e ----> newTable[3]=7
+e=next ----> e=3
+```
+
+结果如下：
+
+![Image](https://mmbiz.qpic.cn/mmbiz_png/JdLkEI9sZfecWQvk4vhdQnUBzictjvKTVlVDoSg5Kvo0maS6h9RNZVRd7sMsZtu5homM7KI9ibEk47WtJXibgXfcg/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
+
+再次进行循环：
+
+```
+e=3
+next=e.next ----> next=null
+e.next=newTable[3] ----> e.next=7 即：3.next=7
+newTable[3]=e ----> newTable[3]=3
+e=next ----> e=null
+```
+
+注意此次循环：e.next=7，而在上次循环中7.next=3，出现环形链表，并且此时e=null循环结束。
+
+结果如下：
+
+**![Image](https://mmbiz.qpic.cn/mmbiz_png/JdLkEI9sZfecWQvk4vhdQnUBzictjvKTVU7APPu5l0lKpFRwBS0KFISCE1h9iarAQnv7zpXz2k9DnZPIr2AWqhiaw/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)**
+
+在后续操作中只要涉及轮询hashmap的数据结构，就会在这里发生死循环，造成悲剧。
