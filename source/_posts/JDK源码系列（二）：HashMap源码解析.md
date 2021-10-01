@@ -200,7 +200,8 @@ static final int hash(Object key) {
   }
   ~~~
 
-  
+
+> Hashmap中的链表大小超过八个时会自动转化为红黑树，当删除小于六时重新变为链表
 
 ## 三、构造方法和初始化
 
