@@ -1,7 +1,7 @@
 ---
-title: JDK源码系列（三）：HashMap、HashTable和ConcurrentHashMap
+title: HashMap、HashTable和ConcurrentHashMap
 date: 2021/4/3
-description: JDK源码系列（三）：HashMap、HashTable和ConcurrentHashMap
+description: HashMap、HashTable和ConcurrentHashMap
 top_img: https://fabian.oss-cn-hangzhou.aliyuncs.com/img/HallstattAustria_PT-BR9407016733_1920x1080.jpg
 cover: https://fabian.oss-cn-hangzhou.aliyuncs.com/img/HallstattAustria_PT-BR9407016733_1920x1080.jpg
 categories:
@@ -16,7 +16,7 @@ tags:
 abbrlink: 5986
 ---
 
-# JDK源码系列（三）：HashMap、HashTable和ConcurrentHashMap
+# HashMap、HashTable和ConcurrentHashMap
 
 ## 一、接口和继承
 

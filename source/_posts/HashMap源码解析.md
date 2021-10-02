@@ -1,7 +1,7 @@
 ---
-title: JDK源码系列（二）：HashMap源码解析
+title: HashMap源码解析
 date: 2021/3/27
-description: JDK源码系列（二）：HashMap源码解析
+description: HashMap源码解析
 top_img: https://fabian.oss-cn-hangzhou.aliyuncs.com/img/LuciolaCruciata_ZH-CN9063767400_1920x1080.jpg
 cover: https://fabian.oss-cn-hangzhou.aliyuncs.com/img/LuciolaCruciata_ZH-CN9063767400_1920x1080.jpg
 categories:
@@ -14,7 +14,7 @@ tags:
 abbrlink: 14375
 ---
 
-# JDK源码系列（二）：HashMap源码解析
+# HashMap源码解析
 
 作为面试必问的hashmap，我们今天来一起来探究一下他的源码。这里先贴一张 hashmap 的内部类和部分方法函数
 
