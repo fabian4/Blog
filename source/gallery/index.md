@@ -27,7 +27,6 @@ comments: false
 ![](https://fabian.oss-cn-hangzhou.aliyuncs.com/img/mmexport1620289452920.jpg)
 ![](https://fabian.oss-cn-hangzhou.aliyuncs.com/img/IMG_20210215_144246.jpg)
 ![](https://fabian.oss-cn-hangzhou.aliyuncs.com/img/IMG_20210816_185310.jpg)
-![](https://fabian.oss-cn-hangzhou.aliyuncs.com/img/retouch_2021091817322319_edit_86750634996137.jpg)
 ![](https://fabian.oss-cn-hangzhou.aliyuncs.com/img/IMG_20201118_103230.jpg)
 ![](https://fabian.oss-cn-hangzhou.aliyuncs.com/img/IMG_20210620_122359_edit_100555252303926.jpg)
 ![](https://fabian.oss-cn-hangzhou.aliyuncs.com/img/IMG_20210111_192257.jpg)
