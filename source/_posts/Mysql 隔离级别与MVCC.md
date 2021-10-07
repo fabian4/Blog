@@ -102,11 +102,6 @@ mysql> show variables like 'transaction_isolation';
 +-----------------------+----------------+
 ~~~
 
-
-
 ## 二、MVCC 及 实现
-
-
-
 
 
