@@ -1,5 +1,9 @@
 class:
   link_list:
+    - name: root@whale3070:~# _
+      link: https://whale3070.github.io/
+      avatar: https://fabian.oss-cn-hangzhou.aliyuncs.com/img/mmexport1631094947749.jpg
+      descr:  InfoSec learning
     - name: Ash's blog
       link: https://bxhong.cn/
       avatar: https://gitee.com/bao_xian_hong/Album/raw/master/image/6.jpg
