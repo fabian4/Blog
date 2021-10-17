@@ -167,3 +167,9 @@ MDL 的作用是，保证读写的正确性。
 
 ## 四、innodb 的 行锁
 
+InnoDB存储引擎有3种行锁的算法，分别是：
+
+- Record Lock: 单个记录上的锁
+- Gap Lock: 间隙锁，锁定一个范围，但不包括记录本身
+- Next-Key Lock: Gap Lock+Record Lock，锁定一个范围，并且锁定记录本身
+
