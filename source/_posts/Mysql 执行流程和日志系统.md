@@ -127,6 +127,10 @@ MySQL的查询优化器是一个非常复杂的部件，它使用了非常多的
 
 <img src="https://fabian.oss-cn-hangzhou.aliyuncs.com/img/image-20211018142440691.png" alt="image-20211018142440691" style="zoom: 25%;" />
 
+https://www.cnblogs.com/wupeixuan/p/11734501.html
+
+
+
 ## 四、存储引擎
 
 **MyISAM引擎和InnoDB引擎简单对比：**
