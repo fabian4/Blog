@@ -121,26 +121,71 @@ MySQL的查询优化器是一个非常复杂的部件，它使用了非常多的
 - 具体来说，当有一条记录需要更新的时候，InnoDB 引擎就会先把记录写到 redo log（redolog buffer）里面，并更新内存（buffer pool），这个时候更新就算完成了。
 - 同时，InnoDB 引擎会在适当的时候（如系统空闲时），将这个操作记录更新到磁盘里面（刷脏页）。
 
-> redo log 是 InnoDB 存储引擎层的日志，又称重做日志文件，redo log 是循环写的，redo log 不是记录数据页更新之后的状态，而是记录这个页做了什么改动。
->
-> redo log 是固定大小的，比如可以配置为一组 4 个文件，每个文件的大小是 1GB，那么日志总共就可以记录 4GB 的操作。从头开始写，写到末尾就又回到开头循环写，如下图所示。
+redo log 是 InnoDB 存储引擎层的日志，又称重做日志文件，redo log 是循环写的，redo log 不是记录数据页更新之后的状态，而是记录这个页做了什么改动。
+
+redo log 是固定大小的，比如可以配置为一组 4 个文件，每个文件的大小是 1GB，那么日志总共就可以记录 4GB 的操作。从头开始写，写到末尾就又回到开头循环写，如下图所示。
+
+- checkpoint 是当前要擦除的位置，擦除记录前需要先把对应的数据落盘（更新内存页，等待刷脏页）。
+- write pos 到 checkpoint 之间的部分可以用来记录新的操作，如果 write pos 和 checkpoint 相遇，说明 redolog 已满，这个时候数据库停止进行数据库更新语句的执行，转而进行 redo log 日志同步到磁盘中。
+
+> redo log 用于保证 crash-safe 能力。innodb_flush_log_at_trx_commit 这个参数设置成 1 的时候，表示每次事务的 redo log 都直接持久化到磁盘。
 
 <img src="https://fabian.oss-cn-hangzhou.aliyuncs.com/img/image-20211018142440691.png" alt="image-20211018142440691" style="zoom: 25%;" />
 
-https://www.cnblogs.com/wupeixuan/p/11734501.html
+### 2. binlog 归档日志
 
+MySQL 整体来看，其实就有两块：
 
+- 一块是 Server 层，它主要做的是 MySQL 功能层面的事情；
+- 还有一块是引擎层，负责存储相关的具体事宜。
 
-## 四、存储引擎
+redo log 是 InnoDB 引擎特有的日志，而 Server 层也有自己的日志，称为 binlog（归档日志）。
 
-**MyISAM引擎和InnoDB引擎简单对比：**
+binlog 属于逻辑日志，是以二进制的形式记录的是这个语句的原始逻辑，依靠 binlog 是没有 crash-safe 能力的。
 
-|          | MyISAM引擎        | InnoDB引擎         |
-| -------- | ----------------- | ------------------ |
-| 主外键   | 不支持            | 支持               |
-| 事务     | 不支持            | 支持               |
-| 行表锁   | 表所.不适合高并发 | 行锁.适合高并发    |
-| 缓存     | 只缓存索引        | 缓存索引和真实数据 |
-| 表空间   | 小                | 大                 |
-| 关注点   | 性能.偏读         | 事务               |
-| 默认安装 | 是                | 是                 |
+binlog 有两种模式，statement 格式的话是记 sql 语句，row 格式会记录行的内容，记两条，更新前和更新后都有。
+
+> sync_binlog 这个参数设置成 1 的时候，表示每次事务的 binlog 都持久化到磁盘。
+
+**redo log 和 binlog 区别：**
+
+1. redo log 是 InnoDB 引擎特有的；binlog 是 MySQL 的 Server 层实现的，所有引擎都可以使用。
+2. redo log 是物理日志，记录的是在某个数据页上做了什么修改；binlog 是逻辑日志，记录的是这个语句的原始逻辑。
+3. redo log 是循环写的，空间固定会用完；binlog 是可以追加写入的。追加写是指 binlog 文件写到一定大小后会切换到下一个，并不会覆盖以前的日志。
+
+> binlog 会记录所有的逻辑操作，并且是采用追加写的形式。当需要恢复到指定的某一秒时，比如今天下午二点发现中午十二点有一次误删表，需要找回数据，那你可以这么做：
+>
+> - 首先，找到最近的一次全量备份，从这个备份恢复到临时库
+> - 然后，从备份的时间点开始，将备份的 binlog 依次取出来，重放到中午误删表之前的那个时刻。
+>
+> 这样你的临时库就跟误删之前的线上库一样了，然后你可以把表数据从临时库取出来，按需要恢复到线上库去。
+
+一个事务的 binlog 是有完整格式的：
+
+- statement 格式的 binlog，最后会有 COMMIT
+- row 格式的 binlog，最后会有一个 XID event
+
+在 MySQL 5.6.2 版本以后，还引入了 binlog-checksum 参数，用来验证 binlog 内容的正确性。对于 binlog 日志由于磁盘原因，可能会在日志中间出错的情况，MySQL 可以通过校验 checksum 的结果来发现。所以，MySQL 是有办法验证事务 binlog 的完整性的。
+
+### 3. update 语句的执行流程图
+
+图中灰色框表示是在 InnoDB 内部执行的，绿色框表示是在执行器中执行的。
+
+<img src="https://fabian.oss-cn-hangzhou.aliyuncs.com/img/image-20211019085451551.png" alt="image-20211019085451551" style="zoom: 50%;" />
+
+> redo log 和 binlog 怎么关联起来
+>
+> redo log 和 binlog 有一个共同的数据字段，叫 XID。崩溃恢复的时候，会按顺序扫描 redo log：
+>
+> - 如果碰到既有 prepare、又有 commit 的 redo log，就直接提交；
+> - 如果碰到只有 parepare、而没有 commit 的 redo log，就拿着 XID 去 binlog 找对应的事务。
+
+### 4. 两阶段提交 2PC
+
+MySQL 使用两阶段提交主要解决 binlog 和 redo log 的数据一致性的问题。
+
+redo log 和 binlog 都可以用于表示事务的提交状态，而两阶段提交就是让这两个状态保持逻辑上的一致。下图为 MySQL 二阶段提交简图：
+
+<img src="https://fabian.oss-cn-hangzhou.aliyuncs.com/img/image-20211019090558784.png" alt="image-20211019090558784" style="zoom:33%;" />
+
+> 每个事务 binlog 的末尾，会记录一个 XID event，标志着事务是否提交成功，也就是说，recovery 过程中，binlog 最后一个 XID event 之后的内容都应该被 purge。
