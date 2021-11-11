@@ -1,5 +1,17 @@
 class:
   link_list:
+    - name: 十年之约-虫洞
+      link: https://www.foreverblog.cn/go.html
+      avatar: https://fabian.oss-cn-hangzhou.aliyuncs.com/img/20211111113237.png
+      descr: 随机访问一位博主
+    - name: nzooherd
+      link: https://blog.nzooherd.me/
+      avatar: https://avatars.githubusercontent.com/u/83459211?v=4
+      descr: Explore the world.
+    - name: 张小凯と彼のBlog
+      link: https://jasonkayzk.github.io/
+      avatar: https://jasonkayzk.github.io/images/avatar4.jpg
+      descr: Get busy living or get busy dying
     - name: root@whale3070:~# _
       link: https://whale3070.github.io/
       avatar: https://fabian.oss-cn-hangzhou.aliyuncs.com/img/mmexport1631094947749.jpg
@@ -16,6 +28,10 @@ class:
       link: https://unknwon.cn/
       avatar: https://unknwon.cn/img/favicon.png
       descr: 抛弃世俗之浮躁，留我钻研之刻苦
+    - name: Frytea's Blog
+      link: https://blog.frytea.com/
+      avatar: https://imagehost-cdn.frytea.com/images/2019/12/07/Frytea.png
+      descr: 煎茶博客，邀您对月吟诗，煮雪烹茶。
     - name: Randy's Blog
       link: https://lutaonan.com/
       avatar: https://fabian.oss-cn-hangzhou.aliyuncs.com/img/20211020212550.png
