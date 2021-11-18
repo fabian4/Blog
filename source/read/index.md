@@ -33,7 +33,7 @@ comments: false
 
 - [**图解 React 源码系列**](https://github.com/7kms/react-illustration-series)
 - 👓[**Koa2进阶学习笔记**](https://chenshenhai.github.io/koa2-note/)
-- 👓[**TypeScript Handbook**](https://zhongsp.gitbooks.io/typescript-handbook/content/)
+- 👓[**TypeScript Handbook**](https://github.com/zhongsp/TypeScript)
 - 📍[**JavaScript 资源大全**](https://github.com/jobbole/awesome-javascript-cn)
 - [**冴羽写博客：JavaScript深入系列、JavaScript专题系列、ES6系列、React系列**](https://github.com/mqyqingfeng/Blog)
 
