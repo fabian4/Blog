@@ -1661,9 +1661,9 @@ hexo-server@^2.0.0:
     open "^7.0.0"
     serve-static "^1.14.1"
 
-hexo-theme-butterfly@^4.0.0:
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/hexo-theme-butterfly/-/hexo-theme-butterfly-4.0.0.tgz#d2a103c4852f87be243af150471c943789de2268"
+hexo-theme-butterfly@^4.0.1:
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/hexo-theme-butterfly/-/hexo-theme-butterfly-4.0.1.tgz#9d8b89ac2947a6e081117b5fa0c0b4406de4c7e0"
   dependencies:
     hexo-renderer-pug "^2.0.0"
     hexo-renderer-stylus "^2.0.1"
