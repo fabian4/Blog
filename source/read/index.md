@@ -49,6 +49,7 @@ comments: false
 
 - [**golang资料补给包**](https://github.com/0voice/Introduction-to-Golang)
 - 👓[**Go入门指南**](https://github.com/unknwon/the-way-to-go_ZH_CN)
+- [**Golang修养之路**](https://github.com/aceld/golang)
 
 # CS 相关📕
 
