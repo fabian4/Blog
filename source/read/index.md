@@ -84,6 +84,7 @@ comments: false
 - [**阮一峰：互联网上的免费书籍**](https://github.com/ruanyf/free-books)
 - [**阮一峰：科技爱好者周刊**](https://github.com/ruanyf/weekly)
 - [**ML-For-Beginners**](https://github.com/microsoft/ML-For-Beginners)
+- [**团队领袖计划**](https://leader.js.cool/)
 
 
 
