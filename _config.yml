@@ -13,7 +13,7 @@ timezone: ''
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
-url: https://fabian4.github.io/
+url: https://fabian4.site/hexo-blog/
 permalink: :abbrlink.html
 permalink_defaults:
 pretty_urls:
@@ -104,7 +104,7 @@ theme: butterfly
 deploy:
   - type: git
     repo:
-      github: git@github.com:fabian4/fabian.github.io.git
+      github: git@github.com:fabian4/hexo-blog
     branch: master
 
 backup:

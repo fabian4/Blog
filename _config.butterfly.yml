@@ -308,7 +308,7 @@ livere:
 gitalk:
   client_id: 98fe0206dedd0d2caf96
   client_secret: 5f2816f58a108f15feba46f9bc88497d3d6457a4
-  repo: fabian4.github.io
+  repo: hexo-blog
   owner: fabian4
   admin: fabian4
   language: zh-CN # en, zh-CN, zh-TW, es-ES, fr, ru
