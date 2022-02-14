@@ -7,14 +7,14 @@
 #   name: link || icon
 
 menu:
-  主页: / || fa fa-home
+  # 主页: / || fa fa-home
   归档: /archives/ || fa fa-archive
   标签: /tags/ || fa fa-tags
   分类: /categories/ || fa fa-folder-open
   友链: /link/ || fa fa-link
   相册: /gallery/ || fas fa-video
   阅读: /read/ || fa fa-book
-  关于: /about/ || fas fa-heart
+  # 关于: /about/ || fas fa-heart
   # Home: / || fas fa-home
   # Archives: /archives/ || fas fa-archive
   # Tags: /tags/ || fas fa-tags
@@ -50,11 +50,11 @@ copy:
 # formal:
 #   icon: link || the description
 social: 
-  fas fa-envelope: mailto:fabian4@163.com || Email
-  fab fa-qq: tencent://AddContact/?fromId=45&fromSubId=1&subcmd=all&uin=2829782656 || QQ
-  fab fa-weixin: http://fabian.oss-cn-hangzhou.aliyuncs.com/img/bc7680cda661a69a399e9f11b2e36f2.jpg || weixin
-  fab fa-twitter: https://twitter.com/fabian13416618 || twitter
-  fab fa-telegram-plane: https://t.me/fabianbao || telegrame
+  # fas fa-envelope: mailto:fabian4@163.com || Email
+  # fab fa-qq: tencent://AddContact/?fromId=45&fromSubId=1&subcmd=all&uin=2829782656 || QQ
+  # fab fa-weixin: http://fabian.oss-cn-hangzhou.aliyuncs.com/img/bc7680cda661a69a399e9f11b2e36f2.jpg || weixin
+  # fab fa-twitter: https://twitter.com/fabian13416618 || twitter
+  # fab fa-telegram-plane: https://t.me/fabianbao || telegrame
 
 # search (搜索)
 # --------------------------------------
@@ -95,7 +95,7 @@ favicon: https://fabian.oss-cn-hangzhou.aliyuncs.com/img/202015ouknbvshlsrvbku5.
 
 # Avatar (頭像)
 avatar:
-  img: https://fabian.oss-cn-hangzhou.aliyuncs.com/img/ZWnOQA3kUGKXSjJ.jpg
+  img: https://fabian4.site/avatar.png
   effect: false
 
 # Disable all banner image
@@ -651,7 +651,7 @@ aside:
     enable: true
     description:
     button:
-      enable: true
+      enable: false
       icon: fab fa-github
       text: Github
       link: https://github.com/fabian4
@@ -701,7 +701,7 @@ runtimeshow:
 
 # Aside widget - Newest Comments
 newest_comments:
-  enable: true
+  enable: false
   sort_order: # Don't modify the setting unless you know how it works
   limit: 6
   storage: 10 # unit: mins, save data to localStorage

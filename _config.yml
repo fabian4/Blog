@@ -3,17 +3,17 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Life-Hourglass
-subtitle: Recording my life
-description: 'details in my everyday life !'
-keywords: personal blog
-author: fabian
+title: Hourglass
+subtitle: for Knowledge
+description: ''
+keywords: personal tech blog
+author: Fabian Bao
 language: zh-CN
 timezone: ''
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
-url: https://fabian4.site/hexo-blog/
+url: https://blog.fabian4.site/
 permalink: :abbrlink.html
 permalink_defaults:
 pretty_urls:
