@@ -157,10 +157,6 @@ argparse@^1.0.7:
   dependencies:
     sprintf-js "~1.0.2"
 
-argparse@^2.0.1:
-  version "2.0.1"
-  resolved "https://registry.nlark.com/argparse/download/argparse-2.0.1.tgz"
-
 arr-diff@^4.0.0:
   version "4.0.0"
   resolved "https://registry.nlark.com/arr-diff/download/arr-diff-4.0.0.tgz?cache=0&sync_timestamp=1618847029174&other_urls=https%3A%2F%2Fregistry.nlark.com%2Farr-diff%2Fdownload%2Farr-diff-4.0.0.tgz"
@@ -1732,9 +1728,9 @@ hexo@^3.0.0:
     titlecase "^1.1.2"
     warehouse "^2.2.0"
 
-hexo@^5.4.0:
-  version "5.4.0"
-  resolved "https://registry.npm.taobao.org/hexo/download/hexo-5.4.0.tgz?cache=0&sync_timestamp=1613894935063&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fhexo%2Fdownload%2Fhexo-5.4.0.tgz"
+hexo@^5.4.2:
+  version "5.4.2"
+  resolved "https://registry.yarnpkg.com/hexo/-/hexo-5.4.2.tgz#7337b6adb0d495287051c03e944d84f66f64e356"
   dependencies:
     abbrev "^1.1.1"
     archy "^1.0.0"
@@ -1746,7 +1742,7 @@ hexo@^5.4.0:
     hexo-i18n "^1.0.0"
     hexo-log "^2.0.0"
     hexo-util "^2.4.0"
-    js-yaml "^4.0.0"
+    js-yaml "^3.14.1"
     micromatch "^4.0.2"
     moment "^2.22.2"
     moment-timezone "^0.5.21"
@@ -2105,18 +2101,12 @@ js-stringify@^1.0.1, js-stringify@^1.0.2:
   version "4.0.0"
   resolved "https://registry.nlark.com/js-tokens/download/js-tokens-4.0.0.tgz"
 
-js-yaml@^3.12.0, js-yaml@^3.13.1, js-yaml@^3.6.1:
+js-yaml@^3.12.0, js-yaml@^3.13.1, js-yaml@^3.14.1, js-yaml@^3.6.1:
   version "3.14.1"
   resolved "https://registry.npm.taobao.org/js-yaml/download/js-yaml-3.14.1.tgz?cache=0&sync_timestamp=1618435151523&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fjs-yaml%2Fdownload%2Fjs-yaml-3.14.1.tgz"
   dependencies:
     argparse "^1.0.7"
     esprima "^4.0.0"
-
-js-yaml@^4.0.0:
-  version "4.1.0"
-  resolved "https://registry.npm.taobao.org/js-yaml/download/js-yaml-4.1.0.tgz?cache=0&sync_timestamp=1618435151523&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fjs-yaml%2Fdownload%2Fjs-yaml-4.1.0.tgz"
-  dependencies:
-    argparse "^2.0.1"
 
 jsonfile@^3.0.0:
   version "3.0.1"
