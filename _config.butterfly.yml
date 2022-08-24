@@ -12,7 +12,7 @@ menu:
   标签: /tags/ || fa fa-tags
   分类: /categories/ || fa fa-folder-open
   友链: /link/ || fa fa-link
-  相册: /gallery/ || fas fa-video
+#  相册: /gallery/ || fas fa-video
   阅读: /read/ || fa fa-book
   # 关于: /about/ || fas fa-heart
   # Home: / || fas fa-home
@@ -49,13 +49,7 @@ copy:
 # social settings (社交圖標設置)
 # formal:
 #   icon: link || the description
-social: 
-  # fas fa-envelope: mailto:fabian4@163.com || Email
-  # fab fa-qq: tencent://AddContact/?fromId=45&fromSubId=1&subcmd=all&uin=2829782656 || QQ
-  # fab fa-weixin: http://fabian.oss-cn-hangzhou.aliyuncs.com/img/bc7680cda661a69a399e9f11b2e36f2.jpg || weixin
-  # fab fa-twitter: https://twitter.com/fabian13416618 || twitter
-  # fab fa-telegram-plane: https://t.me/fabianbao || telegrame
-
+social:
 # search (搜索)
 # --------------------------------------
 
@@ -198,7 +192,7 @@ post_copyright:
 
 # Sponsor/reward
 reward:
-  enable: false
+  enable: true
   QR_code:
     - img: https://fabian.oss-cn-hangzhou.aliyuncs.com/img/h3WuUjvQlqPEAzS.png
       text: wechat
@@ -308,14 +302,14 @@ livere:
 gitalk:
   client_id: 98fe0206dedd0d2caf96
   client_secret: 5f2816f58a108f15feba46f9bc88497d3d6457a4
-  repo: hexo-blog
+  repo: blog
   owner: fabian4
   admin: fabian4
   language: zh-CN # en, zh-CN, zh-TW, es-ES, fr, ru
   perPage: 10 # Pagination size, with maximum 100.
   distractionFreeMode: false # Facebook-like distraction free mode.
   pagerDirection: last # Comment sorting direction, available values are last and first.
-  createIssueManually: false # Gitalk will create a corresponding github issue for your every single page automatically
+  createIssueManually: true # Gitalk will create a corresponding github issue for your every single page automatically
   option:
 
 # valine
