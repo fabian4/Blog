@@ -104,7 +104,7 @@ theme: butterfly
 deploy:
   - type: git
     repo:
-      github: git@github.com:fabian4/hexo-blog.git
+      github: git@github.com:fabian4/blog.git
     branch: gh-pages
 
 backup:
@@ -112,7 +112,7 @@ backup:
   theme: butterfly
   message: Back up my blog
   repository:
-    origin: git@github.com:fabian4/hexo-blog.git,master
+    origin: git@github.com:fabian4/blog.git,master
 
 
 githubcalendar:
