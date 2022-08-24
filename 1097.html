@@ -1,0 +1,287 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>爬虫框架——Scrapy快速上手 | Hourglass</title><meta name="keywords" content="爬虫,Scrapy"><meta name="author" content="Fabian Bao"><meta name="copyright" content="Fabian Bao"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="爬虫框架——Scrapy快速上手">
+<meta property="og:type" content="article">
+<meta property="og:title" content="爬虫框架——Scrapy快速上手">
+<meta property="og:url" content="https://fabian4.site/blog/1097.html">
+<meta property="og:site_name" content="Hourglass">
+<meta property="og:description" content="爬虫框架——Scrapy快速上手">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://fabian.oss-cn-hangzhou.aliyuncs.com/img/QKkrGgWpRlzFATx.jpg">
+<meta property="article:published_time" content="2020-06-13T16:00:00.000Z">
+<meta property="article:modified_time" content="2022-08-24T07:47:19.060Z">
+<meta property="article:author" content="Fabian Bao">
+<meta property="article:tag" content="爬虫">
+<meta property="article:tag" content="Scrapy">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://fabian.oss-cn-hangzhou.aliyuncs.com/img/QKkrGgWpRlzFATx.jpg"><link rel="shortcut icon" href="https://fabian.oss-cn-hangzhou.aliyuncs.com/img/202015ouknbvshlsrvbku5.jpeg.icon.png"><link rel="canonical" href="https://fabian4.site/blog/1097"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/blog/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-E90K5222F4"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-E90K5222F4');
+</script><script>const GLOBAL_CONFIG = { 
+  root: '/blog/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":200},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: true,
+    post: true
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '爬虫框架——Scrapy快速上手',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-08-24 15:47:19'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.2.0"><link rel="alternate" href="/blog/atom.xml" title="Hourglass" type="application/atom+xml">
+</head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://fabian4.site/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/blog/archives/"><div class="headline">文章</div><div class="length-num">73</div></a><a href="/blog/tags/"><div class="headline">标签</div><div class="length-num">54</div></a><a href="/blog/categories/"><div class="headline">分类</div><div class="length-num">16</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/blog/archives/"><i class="fa-fw fa fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/blog/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/blog/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/blog/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/blog/gallery/"><i class="fa-fw fas fa-video"></i><span> 相册</span></a></div><div class="menus_item"><a class="site-page" href="/blog/read/"><i class="fa-fw fa fa-book"></i><span> 阅读</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://fabian.oss-cn-hangzhou.aliyuncs.com/img/QKkrGgWpRlzFATx.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/blog/">Hourglass</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/blog/archives/"><i class="fa-fw fa fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/blog/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/blog/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/blog/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/blog/gallery/"><i class="fa-fw fas fa-video"></i><span> 相册</span></a></div><div class="menus_item"><a class="site-page" href="/blog/read/"><i class="fa-fw fa fa-book"></i><span> 阅读</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">爬虫框架——Scrapy快速上手</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2020-06-13T16:00:00.000Z" title="发表于 2020-06-14 00:00:00">2020-06-14</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-08-24T07:47:19.060Z" title="更新于 2022-08-24 15:47:19">2022-08-24</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/blog/categories/python/">python</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">2k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>7分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="爬虫框架——Scrapy快速上手"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span><span class="post-meta-separator">|</span><span class="post-meta-commentcount"><i class="far fa-comments fa-fw post-meta-icon"></i><span class="post-meta-label">评论数:</span><a href="/blog/1097.html#post-comment"><span class="gitalk-comment-count"><i class="fa-solid fa-spinner fa-spin"></i></span></a></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="爬虫框架——Scrapy快速上手"><a href="#爬虫框架——Scrapy快速上手" class="headerlink" title="爬虫框架——Scrapy快速上手"></a>爬虫框架——Scrapy快速上手</h1><h2 id="一、Scrapy-简介"><a href="#一、Scrapy-简介" class="headerlink" title="一、Scrapy 简介"></a>一、Scrapy 简介</h2><blockquote>
+<p>Scrapy 框架<br>    Scrapy是用纯Python实现一个为了爬取网站数据、提取结构性数据而编写的应用框架，用途非常广泛。框架的力量，用户只需要定制开发几个模块就可以轻松的实现一个爬虫，用来抓取网页内容以及各种图片，非常之方便。Scrapy 使用了 Twisted 异步网络框架来处理网络通讯，可以加快我们的下载速度，不用自己去实现异步框架，并且包含了各种中间件接口，可以灵活的完成各种需求。</p>
+</blockquote>
+<ul>
+<li>虽然我们可以使用独立的 python 脚本来编写我们的爬虫，但框架的使用无疑会大大<strong>简化我们的爬虫开发</strong>以及<strong>加快我们的爬取速度</strong>。我们也可以在在框架中自定义组件来控制和伪装我们的爬虫，以达到反反爬的目的。</li>
+</ul>
+<p>我们这里以一个图片网站为例进行爬取 ——-&gt; <a target="_blank" rel="noopener" href="https://www.mzitu.com/">https://www.mzitu.com/</a> (由于一些原因我就不把爬取的结果图贴上去了🤐)</p>
+<h2 id="二、安装依赖创建项目"><a href="#二、安装依赖创建项目" class="headerlink" title="二、安装依赖创建项目"></a>二、安装依赖创建项目</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">下载安装依赖(如果速度太慢可以配置镜像)</span></span><br><span class="line">pip install Scrapy</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">创建爬虫项目</span></span><br><span class="line">scrapy startproject MeiziTu(你的爬虫项目名称)</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">进入文件目录</span></span><br><span class="line">cd xxxxxx</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">新建爬虫文件</span></span><br><span class="line">scrapy genspider meizitu(你的爬虫名称) mzitu.com(待爬取的域名)</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">启动爬虫</span></span><br><span class="line">scrapy crawl meizitu(你的爬虫名称)</span><br></pre></td></tr></table></figure>
+
+<p>这次因为是一个爬虫工程，我们用 <strong>Pycharm</strong> 打开，然后你就可以看见以下目录文件</p>
+<p><img src="https://fabian.oss-cn-hangzhou.aliyuncs.com/img/3msfunzHy7jCT6k.png" alt="image-20200614195326900"></p>
+<ul>
+<li><code>spiders</code>：放置你的爬虫脚本的文件夹<ul>
+<li><code>_init_.py</code>：包的声明文件</li>
+<li><code>meizitu.py</code>：主要的爬虫脚本文件，你的大部分业务代码在这里编写</li>
+</ul>
+</li>
+<li><code>_init_.py</code>：包的声明文件</li>
+<li><code>items.py</code>：资源封装文件</li>
+<li><code>middlewares.py</code>：爬虫中间件文件</li>
+<li><code>pipelines.py</code>：管道处理文件</li>
+<li><code>settings.py</code>：配置文件</li>
+<li><code>scrapy.cfg</code>：爬虫的主配置文件</li>
+</ul>
+<h2 id="三、Scrapy-框架架构"><a href="#三、Scrapy-框架架构" class="headerlink" title="三、Scrapy 框架架构"></a>三、Scrapy 框架架构</h2><h3 id="Scrapy-架构图"><a href="#Scrapy-架构图" class="headerlink" title="Scrapy 架构图"></a>Scrapy 架构图</h3><p><img src="https://fabian.oss-cn-hangzhou.aliyuncs.com/img/6cl7CsITXOnb1Ao.png" alt="image-20200614200344091"></p>
+<h3 id="Scrapy-流程图"><a href="#Scrapy-流程图" class="headerlink" title="Scrapy 流程图"></a>Scrapy 流程图</h3><p><img src="https://fabian.oss-cn-hangzhou.aliyuncs.com/img/6EhAkxmZ8BUiqVM.png" alt="image-20200614200428620"></p>
+<h3 id="Scrapy框架模块功能"><a href="#Scrapy框架模块功能" class="headerlink" title="Scrapy框架模块功能"></a>Scrapy框架模块功能</h3><ul>
+<li><code>Scrapy Engine</code>（引擎）：Scrapy框架的核心部分。负责在Spider和ItemPipeline、Downloader、Scheduler中间通信、传递数据等。</li>
+<li><code>Spider</code>（爬虫）：发送需要爬取的链接给引擎，最后引擎把其他模块请求回来的数据再发送给爬虫，爬虫就去解析想要的数据。这个部分是我们开发者自己写的，因为要爬取哪些链接，页面中的哪些数据是我们需要的，都是由程序员自己决定。</li>
+<li><code>Scheduler</code>（调度器）：负责接收引擎发送过来的请求，并按照一定的方式进行排列和整理，负责调度请求的顺序等。</li>
+<li><code>Downloader</code>（下载器）：负责接收引擎传过来的下载请求，然后去网络上下载对应的数据再交还给引擎。</li>
+<li><code>Item Pipeline</code>（管道）：负责将Spider（爬虫）传递过来的数据进行保存。具体保存在哪里，应该看开发者自己的需求。</li>
+<li><code>Downloader Middlewares</code>（下载中间件）：可以扩展下载器和引擎之间通信功能的中间件。</li>
+<li><code>Spider Middlewares</code>（Spider中间件）：可以扩展引擎和爬虫之间通信功能的中间件。</li>
+</ul>
+<h2 id="四、爬虫文件"><a href="#四、爬虫文件" class="headerlink" title="四、爬虫文件"></a>四、爬虫文件</h2><h3 id="1-默认生成的爬虫文件"><a href="#1-默认生成的爬虫文件" class="headerlink" title="1. 默认生成的爬虫文件"></a>1. 默认生成的爬虫文件</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> scrapy</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">MeizituSpider</span>(scrapy.Spider):</span><br><span class="line">    <span class="comment"># 继承于Spider类</span></span><br><span class="line">    name = <span class="string">&#x27;meizitu&#x27;</span></span><br><span class="line">    <span class="comment"># 爬虫名字</span></span><br><span class="line">    allowed_domains = [<span class="string">&#x27;mzitu.com&#x27;</span>]</span><br><span class="line">    <span class="comment"># 爬虫允许爬取的访问</span></span><br><span class="line">    start_urls = [<span class="string">&#x27;http://mzitu.com/&#x27;</span>]</span><br><span class="line">    <span class="comment"># 爬虫的开始路径</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">parse</span>(<span class="params">self, response</span>):</span><br><span class="line">        <span class="comment"># 爬取的回调函数</span></span><br><span class="line">        <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="2-两个常用的爬虫类"><a href="#2-两个常用的爬虫类" class="headerlink" title="2. 两个常用的爬虫类"></a>2. 两个常用的爬虫类</h3><ul>
+<li><code>scrapy.Spider</code>：scrapy.Spider是所有爬虫类的父类。</li>
+<li><code>scrapy.spiders.CrawlSpider</code>：规则爬虫是省略了一般的解析工作，它完成了感兴趣的连接<code>&lt;a href=&quot;&quot;&gt;文本&lt;/a&gt;</code>提取。按rules中给定的Rule规则进行提取连接标签中的信息（href, text）。</li>
+</ul>
+<h3 id="3-开始解析结果"><a href="#3-开始解析结果" class="headerlink" title="3. 开始解析结果"></a>3. 开始解析结果</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> scrapy.linkextractors <span class="keyword">import</span> LinkExtractor</span><br><span class="line"><span class="keyword">from</span> scrapy.spiders <span class="keyword">import</span> CrawlSpider, Rule</span><br><span class="line"><span class="keyword">from</span> MeiziTu.items <span class="keyword">import</span> MeizituItem</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">MeizituSpider</span>(<span class="title class_ inherited__">CrawlSpider</span>):</span><br><span class="line">    <span class="comment"># 这里由于页面特点我们将爬虫继承规则爬虫类</span></span><br><span class="line">    name = <span class="string">&#x27;meizitu&#x27;</span></span><br><span class="line">    allowed_domains = [<span class="string">&#x27;mzitu.com&#x27;</span>]</span><br><span class="line">    start_urls = [<span class="string">&#x27;https://www.mzitu.com/&#x27;</span>]</span><br><span class="line">    rules = (</span><br><span class="line">        <span class="comment"># 定义爬虫规则</span></span><br><span class="line">        Rule(</span><br><span class="line">            LinkExtractor(allow=<span class="string">r&#x27;https://www.mzitu.com/page/\d+/&#x27;</span>),</span><br><span class="line">            <span class="comment"># 链接选择器 采用正则表达式进行匹配</span></span><br><span class="line">            follow=<span class="literal">True</span></span><br><span class="line">            <span class="comment"># 跟进链接</span></span><br><span class="line">        ),</span><br><span class="line">        Rule(</span><br><span class="line">            LinkExtractor(allow=<span class="string">r&#x27;https://www.mzitu.com/\d+&#x27;</span>),</span><br><span class="line">            callback=<span class="string">&#x27;parse_detail&#x27;</span>,</span><br><span class="line">            <span class="comment"># 指明回调函数来处理爬取结果</span></span><br><span class="line">            follow=<span class="literal">False</span></span><br><span class="line">            <span class="comment"># 不继续跟进链接</span></span><br><span class="line">        )</span><br><span class="line">    )</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">parse_detail</span>(<span class="params">self, response</span>):</span><br><span class="line">        <span class="comment"># 处理结果的回调函数</span></span><br><span class="line">        title = response.xpath(<span class="string">&quot;//h2[@class=&#x27;main-title&#x27;]/text()&quot;</span>).get()</span><br><span class="line">        <span class="comment"># xpath语法提取结果</span></span><br><span class="line">        urls = []</span><br><span class="line">        <span class="comment"># 准备空列表封装爬取到的图片链接</span></span><br><span class="line">        amount = response.xpath(<span class="string">&quot;//div[@class=&#x27;pagenavi&#x27;]//span/text()&quot;</span>).getall()[-<span class="number">2</span>]</span><br><span class="line">        <span class="comment"># 找到每一套的数量</span></span><br><span class="line">        base_url = response.xpath(<span class="string">&quot;//div[@class=&#x27;main-image&#x27;]/p/a/img/@src&quot;</span>).get()</span><br><span class="line">        <span class="comment"># 找到每一套图的url规则</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, <span class="built_in">int</span>(amount) + <span class="number">1</span>):</span><br><span class="line">            <span class="comment"># 对url进行按规律的拼接</span></span><br><span class="line">            <span class="keyword">if</span> i &lt; <span class="number">10</span>:</span><br><span class="line">                url = base_url.replace(<span class="string">&quot;1.jpg&quot;</span>, <span class="built_in">str</span>(i) + <span class="string">&quot;.jpg&quot;</span>)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                url = base_url.replace(<span class="string">&quot;01.jpg&quot;</span>, <span class="built_in">str</span>(i) + <span class="string">&quot;.jpg&quot;</span>)</span><br><span class="line">            urls.append(url)</span><br><span class="line">            <span class="comment"># 加入集合</span></span><br><span class="line">        item = MeizituItem(title=title, urls=urls)</span><br><span class="line">        <span class="comment"># 封装到 item</span></span><br><span class="line">        <span class="keyword">yield</span> item</span><br><span class="line">        <span class="comment"># 传到下载组件</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>结果的解析这里可以使用 <strong>正则表达式</strong> 、 <strong>xpath表达式</strong> 和 <strong>css选择器</strong> 这些的具体语法这里不过多赘述</p>
+<p>然后根据浏览器的调试工具来抓取自己所需要的信息</p>
+</blockquote>
+<h3 id="4-爬虫配置"><a href="#4-爬虫配置" class="headerlink" title="4. 爬虫配置"></a>4. 爬虫配置</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 关闭对爬虫协议的遵守</span></span><br><span class="line">ROBOTSTXT_OBEY = <span class="literal">False</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 开启延时，降低爬取频率，避免给对方服务器造成太大压力，并且防止频率太高被识别为爬虫</span></span><br><span class="line">DOWNLOAD_DELAY = <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 配置随机请求头进行伪装 越多越好</span></span><br><span class="line">USER_AGENT_LIST = [</span><br><span class="line">    <span class="string">&quot;Mozilla/5.0 (Windows NT 6.2) AppleWebKit/536.3 (KHTML, like Gecko) Chrome/19.0.1062.0 Safari/536.3&quot;</span>,</span><br><span class="line">    ...</span><br><span class="line">]</span><br><span class="line">USER_AGENT = random.choice(USER_AGENT_LIST)</span><br><span class="line">DEFAULT_REQUEST_HEADERS = &#123;</span><br><span class="line">    <span class="string">&#x27;Accept&#x27;</span>: <span class="string">&#x27;text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;Accept-Language&#x27;</span>: <span class="string">&#x27;en&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;User-Agent&#x27;</span>: USER_AGENT</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 有必要的话也可以在这里配置代理ip</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="5-爬虫调试"><a href="#5-爬虫调试" class="headerlink" title="5. 爬虫调试"></a>5. 爬虫调试</h3><ul>
+<li><p>爬虫启动：因为scrapy是从命令行启动，这边为了方便调试，我们通过 python 脚本启动</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 目录下新建一个start.py文件</span></span><br><span class="line"><span class="keyword">from</span> scrapy <span class="keyword">import</span> cmdline</span><br><span class="line"></span><br><span class="line"><span class="comment"># 启动命令行并输入命令</span></span><br><span class="line">cmdline.execute(<span class="string">&#x27;scrapy crawl meizitu&#x27;</span>.split())</span><br><span class="line"></span><br><span class="line"><span class="comment"># 这样我们就可以通过运行这个脚本来启动爬虫</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>爬虫测试：由于爬虫的框架在调试时频繁启动很麻烦，我们这里可以使用 scrapy 提供的命令行工具进行测试</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">scrapy shell http://xxxxxxx.com(你的目标url)</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">接下来就可以开始测试你的正则表达式或者xpath语法</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="五、资源封装下载"><a href="#五、资源封装下载" class="headerlink" title="五、资源封装下载"></a>五、资源封装下载</h2><h3 id="1-封装"><a href="#1-封装" class="headerlink" title="1. 封装"></a>1. 封装</h3><ul>
+<li><p>我们在<code>item.py</code>中定义我们需要传递的资源</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> scrapy</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">MeizituItem</span>(scrapy.Item):</span><br><span class="line">    title = scrapy.Field()</span><br><span class="line">    urls = scrapy.Field()</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>然后就可以在爬虫文件中将其传递过来</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> MeiziTu.items <span class="keyword">import</span> MeizituItem</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">prase</span>(<span class="params">self, response</span>):</span><br><span class="line">    ...    </span><br><span class="line">    item = MeizituItem(title=title, urls=urls)</span><br><span class="line">    <span class="comment"># 封装到 item</span></span><br><span class="line">    <span class="keyword">yield</span> item</span><br><span class="line">    <span class="comment"># 传到下载组件</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在管道文件中接收</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">MeizituPipeline</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">process_item</span>(<span class="params">self, item, spider</span>):</span><br><span class="line">        title = item[<span class="string">&quot;title&quot;</span>]</span><br><span class="line">        urls = item[<span class="string">&quot;urls&quot;</span>]</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="2-文件下载"><a href="#2-文件下载" class="headerlink" title="2. 文件下载"></a>2. 文件下载</h3><p>接下来我们就可以在管道文件中定义下载过程了</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line"><span class="comment"># 配置随机请求头进行伪装 越多越好</span></span><br><span class="line">request_headers = [</span><br><span class="line">    <span class="string">&quot;Mozilla/5.0 (X11; Ubuntu; Linux i686; rv:10.0) Gecko/20100101 Firefox/10.0&quot;</span>,</span><br><span class="line">    ...</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">MeizituPipeline</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">process_item</span>(<span class="params">self, item, spider</span>):</span><br><span class="line">        title = item[<span class="string">&quot;title&quot;</span>]</span><br><span class="line">        urls = item[<span class="string">&quot;urls&quot;</span>]</span><br><span class="line">        <span class="keyword">for</span> url <span class="keyword">in</span> urls:</span><br><span class="line">            <span class="comment"># 处理每一个图片的资源链接</span></span><br><span class="line">            os.chdir(<span class="string">&quot;D:/pic&quot;</span>)</span><br><span class="line">            <span class="comment"># 改变工作路径</span></span><br><span class="line">            file_name = url.split(<span class="string">&quot;.com/&quot;</span>)[<span class="number">1</span>].replace(<span class="string">&quot;/&quot;</span>, <span class="string">&quot;-&quot;</span>)</span><br><span class="line">            <span class="comment"># 提取文件名称</span></span><br><span class="line">            image = requests.get(url,</span><br><span class="line">                                 headers=&#123;<span class="string">&#x27;User-Agent&#x27;</span>: random.choice(request_headers),</span><br><span class="line">                                          <span class="string">&#x27;referer&#x27;</span>: <span class="string">&#x27;https://www.mzitu.com/&#x27;</span>&#125;)</span><br><span class="line">            <span class="comment"># 在请求头中添加 referer 伪装爬虫</span></span><br><span class="line">            f = <span class="built_in">open</span>(file_name, <span class="string">&#x27;wb&#x27;</span>)</span><br><span class="line">            f.write(image.content)</span><br><span class="line">            f.close()</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>然后就可以开始享受成果了！</p>
+</blockquote>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://fabian4.site/blog">Fabian Bao</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://fabian4.site/blog/1097.html">https://fabian4.site/blog/1097.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://fabian4.site/blog" target="_blank">Hourglass</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/blog/tags/%E7%88%AC%E8%99%AB/">爬虫</a><a class="post-meta__tags" href="/blog/tags/Scrapy/">Scrapy</a></div><div class="post_share"><div class="social-share" data-image="https://fabian.oss-cn-hangzhou.aliyuncs.com/img/QKkrGgWpRlzFATx.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/blog/52028.html"><img class="prev-cover" src="https://fabian.oss-cn-hangzhou.aliyuncs.com/img/l3AQS5pKLIrWtaM.jpg" onerror="onerror=null;src='/blog/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">小程序登录——用户个人信息解密</div></div></a></div><div class="next-post pull-right"><a href="/blog/3243.html"><img class="next-cover" src="https://fabian.oss-cn-hangzhou.aliyuncs.com/img/GJDRphHKWj7LSeY.jpg" onerror="onerror=null;src='/blog/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Idea快捷键大全（Windows）</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/blog/10071.html" title="Python 爬图——基于xpath实现图片爬取"><img class="cover" src="https://fabian.oss-cn-hangzhou.aliyuncs.com/img/D7H4KGUmRqxvcSr.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-06-04</div><div class="title">Python 爬图——基于xpath实现图片爬取</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="gitalk-container"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://fabian4.site/avatar.png" onerror="this.onerror=null;this.src='/blog/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Fabian Bao</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/blog/archives/"><div class="headline">文章</div><div class="length-num">73</div></a><a href="/blog/tags/"><div class="headline">标签</div><div class="length-num">54</div></a><a href="/blog/categories/"><div class="headline">分类</div><div class="length-num">16</div></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">The best is yet to come</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%88%AC%E8%99%AB%E6%A1%86%E6%9E%B6%E2%80%94%E2%80%94Scrapy%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B"><span class="toc-number">1.</span> <span class="toc-text">爬虫框架——Scrapy快速上手</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81Scrapy-%E7%AE%80%E4%BB%8B"><span class="toc-number">1.1.</span> <span class="toc-text">一、Scrapy 简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%AE%89%E8%A3%85%E4%BE%9D%E8%B5%96%E5%88%9B%E5%BB%BA%E9%A1%B9%E7%9B%AE"><span class="toc-number">1.2.</span> <span class="toc-text">二、安装依赖创建项目</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81Scrapy-%E6%A1%86%E6%9E%B6%E6%9E%B6%E6%9E%84"><span class="toc-number">1.3.</span> <span class="toc-text">三、Scrapy 框架架构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Scrapy-%E6%9E%B6%E6%9E%84%E5%9B%BE"><span class="toc-number">1.3.1.</span> <span class="toc-text">Scrapy 架构图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Scrapy-%E6%B5%81%E7%A8%8B%E5%9B%BE"><span class="toc-number">1.3.2.</span> <span class="toc-text">Scrapy 流程图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Scrapy%E6%A1%86%E6%9E%B6%E6%A8%A1%E5%9D%97%E5%8A%9F%E8%83%BD"><span class="toc-number">1.3.3.</span> <span class="toc-text">Scrapy框架模块功能</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E7%88%AC%E8%99%AB%E6%96%87%E4%BB%B6"><span class="toc-number">1.4.</span> <span class="toc-text">四、爬虫文件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E9%BB%98%E8%AE%A4%E7%94%9F%E6%88%90%E7%9A%84%E7%88%AC%E8%99%AB%E6%96%87%E4%BB%B6"><span class="toc-number">1.4.1.</span> <span class="toc-text">1. 默认生成的爬虫文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E4%B8%A4%E4%B8%AA%E5%B8%B8%E7%94%A8%E7%9A%84%E7%88%AC%E8%99%AB%E7%B1%BB"><span class="toc-number">1.4.2.</span> <span class="toc-text">2. 两个常用的爬虫类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%BC%80%E5%A7%8B%E8%A7%A3%E6%9E%90%E7%BB%93%E6%9E%9C"><span class="toc-number">1.4.3.</span> <span class="toc-text">3. 开始解析结果</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E7%88%AC%E8%99%AB%E9%85%8D%E7%BD%AE"><span class="toc-number">1.4.4.</span> <span class="toc-text">4. 爬虫配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E7%88%AC%E8%99%AB%E8%B0%83%E8%AF%95"><span class="toc-number">1.4.5.</span> <span class="toc-text">5. 爬虫调试</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E8%B5%84%E6%BA%90%E5%B0%81%E8%A3%85%E4%B8%8B%E8%BD%BD"><span class="toc-number">1.5.</span> <span class="toc-text">五、资源封装下载</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%B0%81%E8%A3%85"><span class="toc-number">1.5.1.</span> <span class="toc-text">1. 封装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BD"><span class="toc-number">1.5.2.</span> <span class="toc-text">2. 文件下载</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/blog/55079.html" title="Mysql 执行流程和日志系统"><img src="https://fabian.oss-cn-hangzhou.aliyuncs.com/img/Hatshepsut_ZH-CN4516192627_1920x1080.jpg" onerror="this.onerror=null;this.src='/blog/img/404.jpg'" alt="Mysql 执行流程和日志系统"/></a><div class="content"><a class="title" href="/blog/55079.html" title="Mysql 执行流程和日志系统">Mysql 执行流程和日志系统</a><time datetime="2021-05-14T16:00:00.000Z" title="发表于 2021-05-15 00:00:00">2021-05-15</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/blog/47132.html" title="Mysql 锁机制"><img src="https://fabian.oss-cn-hangzhou.aliyuncs.com/img/Italica_ZH-CN1692906751_1920x1080.jpg" onerror="this.onerror=null;this.src='/blog/img/404.jpg'" alt="Mysql 锁机制"/></a><div class="content"><a class="title" href="/blog/47132.html" title="Mysql 锁机制">Mysql 锁机制</a><time datetime="2021-04-24T16:00:00.000Z" title="发表于 2021-04-25 00:00:00">2021-04-25</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/blog/10729.html" title="Mysql 隔离级别与MVCC"><img src="https://fabian.oss-cn-hangzhou.aliyuncs.com/img/CuscoCathedral_ZH-CN9834821723_1920x1080.jpg" onerror="this.onerror=null;this.src='/blog/img/404.jpg'" alt="Mysql 隔离级别与MVCC"/></a><div class="content"><a class="title" href="/blog/10729.html" title="Mysql 隔离级别与MVCC">Mysql 隔离级别与MVCC</a><time datetime="2021-04-19T16:00:00.000Z" title="发表于 2021-04-20 00:00:00">2021-04-20</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/blog/58885.html" title="数据库四大性质和隔离等级"><img src="https://fabian.oss-cn-hangzhou.aliyuncs.com/img/ContainerShip_ZH-CN0850122021_1920x1080.jpg" onerror="this.onerror=null;this.src='/blog/img/404.jpg'" alt="数据库四大性质和隔离等级"/></a><div class="content"><a class="title" href="/blog/58885.html" title="数据库四大性质和隔离等级">数据库四大性质和隔离等级</a><time datetime="2021-04-07T16:00:00.000Z" title="发表于 2021-04-08 00:00:00">2021-04-08</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/blog/5986.html" title="HashMap、HashTable和ConcurrentHashMap"><img src="https://fabian.oss-cn-hangzhou.aliyuncs.com/img/HallstattAustria_PT-BR9407016733_1920x1080.jpg" onerror="this.onerror=null;this.src='/blog/img/404.jpg'" alt="HashMap、HashTable和ConcurrentHashMap"/></a><div class="content"><a class="title" href="/blog/5986.html" title="HashMap、HashTable和ConcurrentHashMap">HashMap、HashTable和ConcurrentHashMap</a><time datetime="2021-04-02T16:00:00.000Z" title="发表于 2021-04-03 00:00:00">2021-04-03</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('https://fabian.oss-cn-hangzhou.aliyuncs.com/img/QKkrGgWpRlzFATx.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By Fabian Bao</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">简</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/blog/js/utils.js"></script><script src="/blog/js/main.js"></script><script src="/blog/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><div class="js-pjax"><script>function addGitalkSource () {
+  const ele = document.createElement('link')
+  ele.rel = 'stylesheet'
+  ele.href= 'https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css'
+  document.getElementsByTagName('head')[0].appendChild(ele)
+}
+
+function loadGitalk () {
+  function initGitalk () {
+    var gitalk = new Gitalk(Object.assign({
+      clientID: '98fe0206dedd0d2caf96',
+      clientSecret: '5f2816f58a108f15feba46f9bc88497d3d6457a4',
+      repo: 'hexo-blog',
+      owner: 'fabian4',
+      admin: ['fabian4'],
+      id: 'b74cc78e217887f4c246c5fd59a6d863',
+      updateCountCallback: commentCount
+    },null))
+
+    gitalk.render('gitalk-container')
+  }
+
+  if (typeof Gitalk === 'function') initGitalk()
+  else {
+    addGitalkSource()
+    getScript('https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.js').then(initGitalk)
+  }
+}
+
+function commentCount(n){
+  let isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+  if (isCommentCount) {
+    isCommentCount.innerHTML= n
+  }
+}
+
+if ('Gitalk' === 'Gitalk' || !false) {
+  if (false) btf.loadComment(document.getElementById('gitalk-container'), loadGitalk)
+  else loadGitalk()
+} else {
+  function loadOtherComment () {
+    loadGitalk()
+  }
+}</script></div><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-nest.min.js"></script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-heart.min.js" async="async" mobile="true"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><!-- hexo injector body_end start -->
+  <script data-pjax src="https://cdn.jsdelivr.net/gh/Zfour/hexo-github-calendar@1.21/hexo_githubcalendar.js"></script>
+  <script data-pjax>
+        function GithubCalendarConfig(){
+            var git_githubapiurl ="https://python-github-calendar-api.vercel.app/api?fabian4";
+            var git_color =['#ebedf0', '#fdcdec', '#fc9bd9', '#fa6ac5', '#f838b2', '#f5089f', '#c4067e', '#92055e', '#540336', '#48022f', '#30021f'];
+            var git_user ="fabian4";
+            var parent_div_git = document.getElementById('page');
+            var git_div_html = '<div class="recent-post-item" style="width:100%;height:auto;padding:10px;"><div id="github_loading" style="width:10%;height:100%;margin:0 auto;display: block"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"  viewBox="0 0 50 50" style="enable-background:new 0 0 50 50" xml:space="preserve"><path fill="#d0d0d0" d="M25.251,6.461c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615V6.461z" transform="rotate(275.098 25 25)"><animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 25 25" to="360 25 25" dur="0.6s" repeatCount="indefinite"></animateTransform></path></svg></div><div id="github_container"></div></div>';
+            if(parent_div_git && location.pathname =='/about/'){
+                console.log('已挂载github calendar')
+                // parent_div_git.innerHTML=git_div_html+parent_div_git.innerHTML // 无报错，但不影响使用(支持pjax跳转)
+                parent_div_git.insertAdjacentHTML("afterbegin",git_div_html) // 有报错，但不影响使用(支持pjax跳转)
+            };
+            GithubCalendar(git_githubapiurl,git_color,git_user)
+        }
+        if(document.getElementById('page')){
+            GithubCalendarConfig()
+        }
+    </script>
+    <style>#github_container{min-height:280px}@media screen and (max-width:650px) {#github_container{background-image:;min-height:0px}}</style>
+    <style></style><!-- hexo injector body_end end --></body></html>
