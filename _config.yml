@@ -104,8 +104,8 @@ theme: butterfly
 deploy:
   - type: git
     repo:
-      github: git@github.com:fabian4/blog
-    branch: master
+      github: git@github.com:fabian4/hexo-blog
+    branch: blog
 
 backup:
   type: git
