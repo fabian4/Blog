@@ -3,13 +3,13 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Hourglass
+title: Fabian Bao
 subtitle: for Knowledge
 description: ''
-keywords: personal tech blog
+keywords: blog hexo
 author: Fabian Bao
 language: zh-CN
-timezone: ''
+timezone: Asia/Shanghai
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
